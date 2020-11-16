@@ -1,17 +1,22 @@
 const mongoose = require('mongoose');
-const DevicesModel = require('../models/devices');
+const DevicesModel = require('../models/Devices');
 const faker = require('faker');
 
 const randWords = [
-  , faker.system.commonFileName().replace(/(\.|\/)/g, '-')
-  , faker.system.mimeType().replace(/(\.|\/)/g, '-')
-  , faker.system.commonFileType().replace(/(\.|\/)/g, '-')
-  , faker.system.commonFileExt().replace(/(\.|\/)/g, '-')
-  , faker.system.fileType().replace(/(\.|\/)/g, '-')
-  , faker.system.fileExt().replace(/(\.|\/)/g, '-')
-  , faker.system.semver().replace(/(\.|\/)/g, '-')
-  , faker.random.word().replace(/(\.|\/)/g, '-')
-]
+  'name',
+  'sensor',
+  'event',
+  'status',
+  'panic',
+  'metric',
+  'type',
+  'model_name',
+  'model_ID',
+  'bodyColor',
+  'firmwareVersion',
+  'lastSyncTime',
+  'alias'
+];
 
 const generateRandomJson = require('node-random-json')(
   {
