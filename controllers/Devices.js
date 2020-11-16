@@ -39,6 +39,8 @@ const createAll = async (req, res, next) => {
       name: faker.commerce.productName(),
       definition: generateRandomJson('Object'),
       enable: faker.random.boolean(),
+      tree_path: faker.system.semver(),
+      attributes: generateRandomJson('Object'),
     }
     dataForCreate.push(data);
   }
