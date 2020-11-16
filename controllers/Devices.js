@@ -1,22 +1,7 @@
-const mongoose = require('mongoose');
 const DevicesModel = require('../models/Devices');
 const faker = require('faker');
 
-const randWords = [
-  'name',
-  'sensor',
-  'event',
-  'status',
-  'panic',
-  'metric',
-  'type',
-  'model_name',
-  'model_ID',
-  'bodyColor',
-  'firmwareVersion',
-  'lastSyncTime',
-  'alias'
-];
+const { randWords } = require('../constant');
 
 const generateRandomJson = require('node-random-json')(
   {
@@ -45,6 +30,7 @@ const createAll = async (req, res, next) => {
     const data = {
       name: faker.commerce.productName(),
       definition: generateRandomJson('Object'),
+      enable: faker.random.boolean(),
     }
     dataForCreate.push(data);
   }

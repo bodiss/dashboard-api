@@ -7,7 +7,8 @@ const DevicesSchema = new mongoose.Schema({
     trim: true
   },
 }, {
-  strict: false
+  strict: false,
+  timestamps: true,
 });
 
 const Device = mongoose.model('Device', DevicesSchema);
