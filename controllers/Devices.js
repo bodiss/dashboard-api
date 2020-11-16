@@ -12,15 +12,23 @@ const generateRandomJson = require('node-random-json')(
   });
 
 const getDevices = async (req, res, next) => {
-  console.log('Devices');
-  const devices = await DevicesModel.find({});
-  res.send(devices);
+  try {
+    const devices = await DevicesModel.find({});
+    res.send(devices);
+  } catch (e) {
+    res.send(e.message).status(500);
+  }
 };
 
 const updateByID = async (req, res, next) => {
   const _id = req.params.id;
-  await DevicesModel.updateOne({ _id }, { ...req.body });
-  res.send({ status: 'OK' });
+  try {
+    const updated = await DevicesModel.updateOne({ _id }, { ...req.body });
+    res.send(updated);
+  } catch (e) {
+    res.send(e.message).status(400);
+  }
+
 };
 
 const createAll = async (req, res, next) => {
@@ -35,13 +43,21 @@ const createAll = async (req, res, next) => {
     dataForCreate.push(data);
   }
 
-  await DevicesModel.create(dataForCreate);
-  res.send({ status: 'OK' });
+  try {
+    const created = await DevicesModel.create(dataForCreate);
+    res.send(created);
+  } catch (e) {
+    res.send(e.message).status(400);
+  }
 };
 
 const deleteAll = async (req, res, next) => {
-  await DevicesModel.deleteMany({});
-  res.send({ status: 'OK' });
+  try {
+    const deleted = await DevicesModel.deleteMany({});
+    res.send(deleted);
+  } catch (e) {
+    res.send(e.message).status(400);
+  }
 };
 
 module.exports = {
